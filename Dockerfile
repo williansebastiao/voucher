@@ -24,4 +24,6 @@ COPY . .
 
 RUN chown -R appuser:appuser /code
 
+ENV PYTHONPATH=/code
+
 USER appuser
