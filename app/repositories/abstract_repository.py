@@ -2,15 +2,27 @@ from abc import ABC, abstractmethod
 from uuid import UUID
 
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
 
 
 class AbstractRepository(ABC):
 
     @abstractmethod
-    def create(self, payload: BaseModel): ...
+    async def create(
+        self,
+        payload: BaseModel,
+        session: Session,
+    ): ...
 
     @abstractmethod
-    def find_all(self): ...
+    async def find_all(
+        self,
+        session: Session,
+    ): ...
 
     @abstractmethod
-    def find_by_uuid(self, uuid: UUID): ...
+    async def find_by_uuid(
+        self,
+        uuid: UUID,
+        session: Session,
+    ): ...

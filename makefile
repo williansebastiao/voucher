@@ -1,13 +1,13 @@
 SHELL := /bin/bash
 .DEFAULT_GOAL := help
 DOCKER_COMPOSE := docker-compose
-DOCKER := docker exec -it snappy-app
+DOCKER := docker exec -it voucher_app
 POETRY_CMD := poetry run
 
-.PHONY: help scaffold alembic start build stop container migration  migrate pre-commit pre-commit-install pre-commit-update pylint-generate lint test flake black isort autoflake pylint
+.PHONY: help scaffold alembic start build stop container migration  migrate pylint-generate lint test flake black isort autoflake pylint
 
 help:
-	@echo "Snappy"
+	@echo "Voucher"
 	@echo "---------------------"
 	@echo "Usage: make <command>"
 	@echo ""
@@ -21,7 +21,7 @@ scaffold: ## Start config to project
 	poetry update
 
 alembic: ## Start alembic
-	$(POETRY_CMD) alembic init migrations
+	alembic init migrations
 
 start: ## Start all containers
 	$(DOCKER_COMPOSE) up -d
@@ -36,44 +36,35 @@ container: ## Enter the container
 	$(DOCKER) bash
 
 migration: ## Create a migration
-	$(POETRY_CMD) alembic revision --autogenerate -m "$(message)"
+	$(DOCKER) alembic revision --autogenerate -m "$(message)"
 
 migrate: ## Run migration
-	$(POETRY_CMD) alembic upgrade head
-
-pre-commit: ## Run pre-commit
-	$(POETRY_CMD) pre-commit run --all-files
-
-pre-commit-install: ## Install pre-commit
-	$(POETRY_CMD) pre-commit install
-
-pre-commit-update: ## Update pre-commit
-	$(POETRY_CMD) pre-commit autoupdate
+	$(DOCKER) alembic upgrade head
 
 pylint-generate: ## Generate pylint file
-	$(POETRY_CMD) pylint --generate-rcfile > .pylintrc
+	pylint --generate-rcfile > .pylintrc
 
 lint: flake black isort autoflake pylint ## Run all linting tools
 
 test: ## Run Pytest inside the Docker container
-	$(DOCKER) $(POETRY_CMD) pytest
+	pytest
 
 flake: ## Run Flake8
 	@echo "Running flake tools..."
-	@$(POETRY_CMD) flake8 app
+	flake8 app
 
 black: ## Run Black
 	@echo "Running black tools..."
-	@$(POETRY_CMD) black app
+	black app
 
 isort: ## Run Isort
 	@echo "Running isort tools..."
-	@$(POETRY_CMD) isort app
+	isort app
 
 autoflake: ## Run Autoflake
 	@echo "Running autoflake tools..."
-	@$(POETRY_CMD) autoflake app
+	autoflake app
 
 pylint: ## Run Pylint
 	@echo "Running pylint tools..."
-	@$(POETRY_CMD) pylint app --recursive=y
+	pylint app --recursive=y

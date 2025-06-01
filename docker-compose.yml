@@ -15,6 +15,7 @@ services:
             - "5678:5678"
         volumes:
             - ./app:/code/app
+            - ./migrations:/code/migrations
             - ./.env:/code/.env
         depends_on:
             - db
