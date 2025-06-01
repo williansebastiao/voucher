@@ -44,7 +44,7 @@ migrate: ## Run migration
 pylint-generate: ## Generate pylint file
 	pylint --generate-rcfile > .pylintrc
 
-lint: flake black isort autoflake pylint ## Run all linting tools
+lint: flake black isort autoflake pylint mypy ## Run all linting tools
 
 test: ## Run Pytest inside the Docker container
 	pytest
@@ -68,3 +68,7 @@ autoflake: ## Run Autoflake
 pylint: ## Run Pylint
 	@echo "Running pylint tools..."
 	pylint app --recursive=y
+
+mypy: ## Run Mypy
+	@echo "Running mypy tools..."
+	mypy app

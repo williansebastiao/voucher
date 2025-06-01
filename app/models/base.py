@@ -3,12 +3,10 @@ import uuid as puuid
 import pendulum
 from sqlalchemy import DateTime
 from sqlalchemy.dialects.postgresql import UUID
-from sqlalchemy.orm import Mapped, declarative_base, mapped_column
-
-Base = declarative_base()
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
 
 
-class BaseModel(Base):
+class BaseModel(DeclarativeBase):
 
     __abstract__ = True
 

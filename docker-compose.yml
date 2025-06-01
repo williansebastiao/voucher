@@ -14,9 +14,7 @@ services:
             - "8000:8000"
             - "5678:5678"
         volumes:
-            - ./app:/code/app
-            - ./migrations:/code/migrations
-            - ./.env:/code/.env
+            - .:/code
         depends_on:
             - db
         networks:
