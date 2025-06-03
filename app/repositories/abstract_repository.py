@@ -1,16 +1,31 @@
-from abc import ABC, abstractmethod
+from abc import abstractmethod
+from typing import Generic, TypeVar
 from uuid import UUID
 
 from pydantic import BaseModel
+from sqlalchemy.orm import Session
+
+T = TypeVar("T", bound=BaseModel)
 
 
-class AbstractRepository(ABC):
-
-    @abstractmethod
-    def create(self, payload: BaseModel): ...
-
-    @abstractmethod
-    def find_all(self): ...
+class AbstractRepository(Generic[T]):
 
     @abstractmethod
-    def find_by_uuid(self, uuid: UUID): ...
+    async def create(
+        self,
+        payload: T,
+        session: Session,
+    ): ...
+
+    @abstractmethod
+    async def find_all(
+        self,
+        session: Session,
+    ): ...
+
+    @abstractmethod
+    async def find_by_uuid(
+        self,
+        uuid: UUID,
+        session: Session,
+    ): ...
