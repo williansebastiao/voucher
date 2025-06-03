@@ -1,7 +1,7 @@
 
 # Voucher
 
-Este projeto tem como objetivo visualizar minhas habilidades de desenvolvimento, devops(CI/CD), testes e  linter e claro, desenvolvimento pythin.
+Este projeto tem como objetivo visualizar minhas habilidades de desenvolvimento, devops(CI/CD), testes e  linter e claro, desenvolvimento python.
 
 
 ## Instalação
@@ -52,12 +52,7 @@ Aqui está uma lista das funcionalidades disponíveis:
 | `container`               | Acessa o container                                  |
 | `pylint-generate`         | Gera o arquivo de configuração do pylint           |
 | `lint`                    | Executa todas as ferramentas de linting            |
-| `test`                    | Executa os testes com Pytest dentro do container   |
-| `flake`                   | Executa o Flake8                                   |
-| `black`                   | Executa o Black                                    |
-| `isort`                   | Executa o Isort                                    |
-| `autoflake`               | Executa o Autoflake                                |
-| `pylint`                  | Executa o Pylint                                   |
+| `test`                    | Executa os testes com Pytest dentro do container
 
 ## Debugging
 
