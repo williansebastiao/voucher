@@ -61,7 +61,7 @@ Aqui está uma lista das funcionalidades disponíveis:
 
 ## Debugging
 
-Ãƒâ€° possÃƒÂ­vel realizar a depuração do projeto. Se você estiver utilizando o Visual Studio Code, siga estes passos:
+É possível realizar a depuração do projeto. Se você estiver utilizando o Visual Studio Code, siga estes passos:
 
 - Clique no botão "Run and Debug" na barra lateral do programa.
 - Clique no botão "Start Debugging".
