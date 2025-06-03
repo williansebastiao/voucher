@@ -36,10 +36,10 @@ container: ## Enter the container
 	$(DOCKER) bash
 
 migration: ## Create a migration
-	$(DOCKER) alembic revision --autogenerate -m "$(message)"
+	alembic revision --autogenerate -m "$(message)"
 
 migrate: ## Run migration
-	$(DOCKER) alembic upgrade head
+	alembic upgrade head
 
 pylint-generate: ## Generate pylint file
 	pylint --generate-rcfile > .pylintrc
@@ -47,7 +47,7 @@ pylint-generate: ## Generate pylint file
 lint: flake black isort autoflake pylint mypy ## Run all linting tools
 
 test: ## Run Pytest inside the Docker container
-	$(DOCKER) pytest tests
+	PYTHONPATH=. pytest tests
 
 flake: ## Run Flake8
 	@echo "Running flake tools..."
