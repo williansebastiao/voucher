@@ -21,7 +21,7 @@ scaffold: ## Start config to project
 	poetry update
 
 alembic: ## Start alembic
-	alembic init migrations
+	poetry run alembic init migrations
 
 start: ## Start all containers
 	$(DOCKER_COMPOSE) up -d
@@ -36,13 +36,13 @@ container: ## Enter the container
 	$(DOCKER) bash
 
 migration: ## Create a migration
-	alembic revision --autogenerate -m "$(message)"
+	poetry run alembic revision --autogenerate -m "$(message)"
 
 migrate: ## Run migration
-	alembic upgrade head
+	poetry run alembic upgrade head
 
 pylint-generate: ## Generate pylint file
-	pylint --generate-rcfile > .pylintrc
+	poetry run pylint --generate-rcfile > .pylintrc
 
 lint: flake black isort autoflake pylint mypy ## Run all linting tools
 
@@ -51,24 +51,24 @@ test: ## Run Pytest inside the Docker container
 
 flake: ## Run Flake8
 	@echo "Running flake tools..."
-	flake8 app
+	poetry run flake8 app
 
 black: ## Run Black
 	@echo "Running black tools..."
-	black app
+	poetry run black app
 
 isort: ## Run Isort
 	@echo "Running isort tools..."
-	isort app
+	poetry run isort app
 
 autoflake: ## Run Autoflake
 	@echo "Running autoflake tools..."
-	autoflake app
+	poetry run autoflake app
 
 pylint: ## Run Pylint
 	@echo "Running pylint tools..."
-	pylint app --recursive=y
+	poetry run pylint app --recursive=y
 
 mypy: ## Run Mypy
 	@echo "Running mypy tools..."
-	mypy app
+	poetry run mypy app
