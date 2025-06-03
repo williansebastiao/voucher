@@ -47,7 +47,7 @@ pylint-generate: ## Generate pylint file
 lint: flake black isort autoflake pylint mypy ## Run all linting tools
 
 test: ## Run Pytest inside the Docker container
-	PYTHONPATH=. pytest tests
+	poetry run pytest tests
 
 flake: ## Run Flake8
 	@echo "Running flake tools..."
